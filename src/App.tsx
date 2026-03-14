@@ -143,22 +143,58 @@ const ProjectCard = ({ project, i, progress, range, targetScale }: any) => {
 
 // --- Main App ---
 
+// Hardcoded data
+const SKILLS = [
+  { id: 1, name: "JavaScript", category: "Frontend" },
+  { id: 2, name: "TypeScript", category: "Frontend" },
+  { id: 3, name: "React", category: "Frontend" },
+  { id: 4, name: "Next.js", category: "Frontend" },
+  { id: 5, name: "Tailwind CSS", category: "Frontend" },
+  { id: 6, name: "Node.js", category: "Backend" },
+  { id: 7, name: "Express", category: "Backend" },
+  { id: 14, name: "Spring Boot", category: "Backend" },
+  { id: 8, name: "MongoDB", category: "Database" },
+  { id: 9, name: "PostgreSQL", category: "Database" },
+  { id: 10, name: "Prisma", category: "Database" },
+  { id: 15, name: "Redis", category: "Database" },
+  { id: 16, name: "MySQL", category: "Database" },
+  { id: 11, name: "Git", category: "Tools" },
+  { id: 12, name: "GitHub", category: "Tools" },
+  { id: 13, name: "Docker", category: "Tools" }
+];
+
+const PROJECTS = [
+  {
+    id: 1,
+    title: "CodeCollab",
+    description: "A real-time collaborative IDE with AI pair programming, live code execution, and instant team sync. Multiple developers can write code simultaneously with live cursor sync powered by Socket.io.",
+    tech_stack: ["React", "Node.js", "Socket.io", "AI"],
+    url: "https://codecollab-five.vercel.app/",
+    github_url: "https://github.com/subxm/code_collab",
+    image_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000"
+  },
+  {
+    id: 2,
+    title: "RESOLIO",
+    description: "AI-powered application for intelligent problem resolution and analysis. Built with modern technologies to provide seamless user experience.",
+    tech_stack: ["Next.js", "TypeScript", "AI", "Tailwind"],
+    url: "https://resolio-ai.netlify.app/",
+    github_url: "https://github.com/subxm/RESOLIO",
+    image_url: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000"
+  }
+];
+
 export default function App() {
-  const [skills, setSkills] = useState<any[]>([]);
-  const [projects, setProjects] = useState<any[]>([]);
+  const skills = SKILLS;
+  const projects = PROJECTS;
   const containerRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-
-  useEffect(() => {
-    fetch('/api/skills').then(res => res.json()).then(setSkills);
-    fetch('/api/projects').then(res => res.json()).then(setProjects);
-  }, []);
 
   const categories = [...new Set(skills.map(skill => skill.category))];
 
@@ -374,13 +410,11 @@ function Contact() {
     setStatus('loading');
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    
+
     try {
-      const res = await fetch('/api/messages', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: formData
       });
       if (res.ok) {
         setStatus('success');
@@ -420,6 +454,7 @@ function Contact() {
 
         <div className="bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl">
           <form onSubmit={handleSubmit} className="space-y-8">
+            <input type="hidden" name="access_key" value="f348776c-0cc8-49c3-b726-6949d63f5555" />
             <div className="relative group">
               <input 
                 type="text" 
