@@ -266,30 +266,47 @@ function Hero() {
   const rotateX = useTransform(scrollY, [0, 500], [0, 20]);
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden perspective-[1000px]">
+    <section className="relative min-h-screen flex items-center overflow-hidden perspective-[1000px] px-6">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
       
       <motion.div 
         style={{ y, opacity, scale, rotateX }}
-        className="relative z-10 text-center px-6 transform-gpu"
+        className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(260px,420px)_1fr] gap-10 lg:gap-20 items-center transform-gpu"
       >
+        <motion.div
+          initial={{ opacity: 0, x: -40, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-sm mx-auto lg:mx-0"
+        >
+          <div className="absolute -inset-4 bg-gradient-to-br from-white/20 to-transparent blur-2xl opacity-60" />
+          <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+            <img
+              src="/profile.png"
+              alt="Subham Singh Negi profile"
+              className="w-full h-[420px] sm:h-[460px] object-cover object-top"
+            />
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center lg:text-left"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-sm font-medium tracking-wide text-zinc-300">Available for new opportunities</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter mb-6">
-            Hi, I'm <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-white">Subham Singh Negi.</span>
+          <h1 className="font-black leading-tight tracking-tighter mb-6">
+            <span className="block text-3xl md:text-4xl lg:text-5xl mb-2">Hi, I'm</span>
+            <span className="block text-[clamp(2.2rem,5.6vw,5.25rem)] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-white">Subham Singh Negi.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light">
+          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto lg:mx-0 font-light">
             I build immersive digital experiences, combining robust backend architecture with cutting-edge frontend design.
           </p>
         </motion.div>
