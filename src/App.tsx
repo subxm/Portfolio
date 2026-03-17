@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Code2, Layers, Cpu, Database, Terminal } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ArrowRight, Code2, Layers, Cpu, Database, Terminal, FileText } from 'lucide-react';
 
 // --- Components ---
 
@@ -109,7 +109,7 @@ const ProjectCard = ({ project, i, progress, range, targetScale }: any) => {
 
           <div className="flex gap-6 mt-auto">
             {project.url && project.url !== '#' && (
-              <a href={project.url} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-white font-medium">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-white font-medium">
                 <span className="relative overflow-hidden">
                   <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">Live Site</span>
                   <span className="inline-block absolute left-0 top-full transition-transform duration-300 group-hover:-translate-y-full">Live Site</span>
@@ -118,7 +118,7 @@ const ProjectCard = ({ project, i, progress, range, targetScale }: any) => {
               </a>
             )}
             {project.github_url && (
-              <a href={project.github_url} target="_blank" rel="noreferrer" className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+              <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
                 <span>Source</span>
               </a>
@@ -184,6 +184,12 @@ const PROJECTS = [
   }
 ];
 
+const NAV_ITEMS = [
+  { id: "about", label: "About" },
+  { id: "work", label: "Work" },
+  { id: "contact", label: "Contact" }
+] as const;
+
 export default function App() {
   const skills = SKILLS;
   const projects = PROJECTS;
@@ -195,8 +201,26 @@ export default function App() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const navBackground = useTransform(scrollYProgress, [0, 0.08], ["rgba(0, 0, 0, 0)", "rgba(9, 9, 11, 0.72)"]);
+  const navBorderColor = useTransform(scrollYProgress, [0, 0.08], ["rgba(255,255,255,0)", "rgba(255,255,255,0.12)"]);
 
   const categories = [...new Set(skills.map(skill => skill.category))];
+
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+
+    if (!section) return;
+
+    const navOffset = 96;
+    const top = section.getBoundingClientRect().top + window.scrollY - navOffset;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.scrollTo({
+      top,
+      behavior: prefersReducedMotion ? "auto" : "smooth"
+    });
+  };
 
   return (
     <div ref={containerRef} className="bg-black text-white min-h-screen selection:bg-white selection:text-black overflow-clip font-sans">
@@ -209,14 +233,27 @@ export default function App() {
       />
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 mix-blend-difference p-6 flex justify-between items-center pointer-events-none">
+      <motion.nav
+        className="fixed top-0 w-full z-40 p-6 flex justify-between items-center pointer-events-none border-b border-transparent backdrop-blur-xl"
+        style={{ backgroundColor: navBackground, borderBottomColor: navBorderColor }}
+      >
         <div className="text-2xl font-black tracking-tighter pointer-events-auto">SUBHAM.</div>
-        <div className="flex gap-6 text-sm font-medium pointer-events-auto">
-          <a href="#about" className="hover:line-through transition-all">About</a>
-          <a href="#work" className="hover:line-through transition-all">Work</a>
-          <a href="#contact" className="hover:line-through transition-all">Contact</a>
+        <div className="flex gap-7 text-sm font-medium pointer-events-auto">
+          {NAV_ITEMS.map((item) => (
+            <motion.a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(event) => handleNavClick(event, item.id)}
+              className="group relative py-1"
+              whileHover={{ y: -2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 24 }}
+            >
+              <span>{item.label}</span>
+              <span className="absolute left-0 -bottom-0.5 h-px w-full bg-white origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+            </motion.a>
+          ))}
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Hero Section */}
       <Hero />
@@ -228,7 +265,7 @@ export default function App() {
       <Skills skills={skills} categories={categories} />
 
       {/* Projects Section */}
-      <div id="work" className="relative mt-32">
+      <div id="work" className="relative mt-32 scroll-mt-28">
         <div className="max-w-7xl mx-auto px-6 mb-20">
           <SectionHeading title="Selected Work" subtitle="A collection of my recent projects, demonstrating my ability to build full-stack applications from the ground up." />
         </div>
@@ -269,6 +306,16 @@ function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden perspective-[1000px] px-6">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
+      <motion.div
+        className="absolute -left-20 top-24 w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl"
+        animate={{ x: [0, 30, 0], y: [0, -20, 0], rotate: [0, 8, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute -right-24 bottom-20 w-72 h-72 rounded-full bg-white/8 blur-3xl"
+        animate={{ x: [0, -28, 0], y: [0, 24, 0], rotate: [0, -8, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      />
       
       <motion.div 
         style={{ y, opacity, scale, rotateX }}
@@ -331,11 +378,12 @@ function About() {
     target: ref,
     offset: ["start end", "end start"]
   });
+  const isInView = useInView(ref, { once: true, margin: "-120px" });
   
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section id="about" className="py-32 md:py-48 relative px-6" ref={ref}>
+    <section id="about" className="py-32 md:py-48 relative px-6 scroll-mt-28" ref={ref}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-5">
           <SectionHeading title="About" />
@@ -343,6 +391,9 @@ function About() {
         
         <motion.div 
           style={{ y }}
+          initial={{ opacity: 0, x: 60, filter: "blur(10px)" }}
+          animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="md:col-span-7 text-2xl md:text-4xl font-light leading-tight tracking-tight text-zinc-300"
         >
           <p className="mb-8">
@@ -353,15 +404,18 @@ function About() {
           </p>
           
           <div className="mt-12 flex flex-wrap gap-6">
-            <a href="https://github.com/subxm/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors">
+            <motion.a href="https://github.com/subxm/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors" whileHover={{ x: 8 }}>
               <Github className="w-5 h-5" /> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/subxm/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors">
+            </motion.a>
+            <motion.a href="https://www.linkedin.com/in/subxm/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors" whileHover={{ x: 8 }}>
               <Linkedin className="w-5 h-5" /> LinkedIn
-            </a>
-            <a href="https://leetcode.com/u/subxm/" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors">
+            </motion.a>
+            <motion.a href="/Subham_Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors" whileHover={{ x: 8 }}>
+              <FileText className="w-5 h-5" /> Resume
+            </motion.a>
+            <motion.a href="https://leetcode.com/u/subxm/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg font-medium border-b border-white/30 pb-1 hover:border-white transition-colors" whileHover={{ x: 8 }}>
               <Code2 className="w-5 h-5" /> LeetCode
-            </a>
+            </motion.a>
           </div>
         </motion.div>
       </div>
@@ -381,7 +435,7 @@ function Skills({ skills, categories }: { skills: any[], categories: string[] })
   };
 
   return (
-    <section className="py-32 px-6 bg-zinc-950 relative border-y border-white/5" ref={ref}>
+    <section className="py-32 px-6 bg-zinc-950 relative border-y border-white/5 overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <SectionHeading title="Expertise" subtitle="Technologies I've mastered to build scalable applications." />
         
@@ -394,7 +448,8 @@ function Skills({ skills, categories }: { skills: any[], categories: string[] })
                 initial={{ opacity: 0, y: 50, rotateY: -15 }}
                 animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
                 transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-900 transition-colors"
+                whileHover={{ y: -10, scale: 1.02, rotateX: 3, rotateY: -3 }}
+                className="group relative p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-900 transition-all duration-500"
                 style={{ transformPerspective: 1000 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none" />
@@ -421,6 +476,8 @@ function Skills({ skills, categories }: { skills: any[], categories: string[] })
 
 function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -446,12 +503,16 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-48 px-6 relative overflow-hidden">
+    <section id="contact" className="py-24 md:py-32 px-6 relative overflow-hidden scroll-mt-28" ref={ref}>
       <div className="absolute inset-0 bg-zinc-950 z-0" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05)_0,transparent_50%)] z-0" />
       
       <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -60, filter: "blur(12px)" }}
+          animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-8">
             Let's <br/> <span className="text-zinc-500">Talk.</span>
           </h2>
@@ -467,9 +528,14 @@ function Contact() {
               subhamsinghnegi03@gmail.com
             </a>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl">
+        <motion.div
+          className="bg-zinc-900/50 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl"
+          initial={{ opacity: 0, x: 60, filter: "blur(12px)" }}
+          animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           <form onSubmit={handleSubmit} className="space-y-8">
             <input type="hidden" name="access_key" value="f348776c-0cc8-49c3-b726-6949d63f5555" />
             <div className="relative group">
@@ -514,26 +580,28 @@ function Contact() {
               </label>
             </div>
 
-            <button 
+            <motion.button 
               type="submit"
               disabled={status === 'loading' || status === 'success'}
               className="w-full py-5 rounded-xl bg-white text-black font-bold text-lg flex items-center justify-center gap-3 hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group overflow-hidden relative"
+              whileHover={status === 'idle' ? { y: -2, scale: 1.02 } : {}}
+              whileTap={status === 'idle' ? { scale: 0.98 } : {}}
             >
               <span className="relative z-10 flex items-center gap-2">
                 {status === 'loading' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send Message'}
                 {status === 'idle' && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               </span>
-            </button>
+            </motion.button>
             
             {status === 'error' && (
               <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
             )}
           </form>
-        </div>
+        </motion.div>
       </div>
       
       {/* Footer */}
-      <div className="max-w-7xl mx-auto mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-zinc-500 text-sm">
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-zinc-500 text-sm">
         <p>© {new Date().getFullYear()} Subham. All rights reserved.</p>
         <p className="mt-4 md:mt-0">Designed & Built with precision.</p>
       </div>
