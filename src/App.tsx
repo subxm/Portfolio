@@ -180,7 +180,7 @@ const PROJECTS = [
     tech_stack: ["React", "Node.js", "Socket.io", "AI"],
     url: "https://codecollab-five.vercel.app/",
     github_url: "https://github.com/subxm/code_collab",
-    image_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000"
+    image_url: "https://image.thum.io/get/width/1200/https://codecollab-five.vercel.app/"
   }
 ];
 
