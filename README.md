@@ -1,59 +1,44 @@
-# Portfolio
+# Subham Portfolio
 
-Personal portfolio showcasing my projects and technical skills.
+Modern single-page portfolio built with React, Vite, Tailwind CSS, and Framer Motion.
 
-## Features
+## Highlights
 
-- Fully static site (no backend, no database)
-- Smooth scroll animations with Framer Motion
-- Responsive design
-- Working contact form via Web3Forms
-- Custom cursor effects
+- Bold hero and section transitions powered by Framer Motion
+- Sticky stacked project cards in the Selected Work section
+- Skills grouped by domain (Frontend, Backend, Database, Tools)
+- Functional contact form powered by Web3Forms
+- Fully responsive layout for mobile and desktop
 
 ## Tech Stack
 
-- **React** + **TypeScript** + **Vite**
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **Lucide React** for icons
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
 
-## Quick Start
+## Local Development
 
 ```bash
-# Install dependencies
 npm install
-
-# Run dev server
 npm run dev
+```
 
-# Build for production
+## Production Build
+
+```bash
 npm run build
+npm run preview
 ```
 
-## Adding Projects
+## Content Editing
 
-Edit the `PROJECTS` array in `src/App.tsx`:
+- Update featured projects in src/App.tsx in the PROJECTS array.
+- Update skills in src/App.tsx in the SKILLS array.
+- Update contact/social links in src/App.tsx in the About and Contact sections.
 
-```typescript
-const PROJECTS = [
-  {
-    id: 1,
-    title: "Project Name",
-    description: "Brief description",
-    tech_stack: ["React", "Node.js"],
-    url: "https://www.subxm.me/",
-    github_url: "https://github.com/subxm/Portfolio",
-  },
-];
-```
+## Deploy
 
-## Contact Form Setup
-
-The contact form uses [Web3Forms](https://web3forms.com/). To set it up:
-
-1. Get your free access key from Web3Forms
-2. Replace the key in `src/App.tsx` (line 423)
-
-## License
-
-MIT
+Deploy the Vite build output to Vercel, Netlify, or any static host.

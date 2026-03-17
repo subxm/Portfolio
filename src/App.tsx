@@ -166,21 +166,21 @@ const SKILLS = [
 const PROJECTS = [
   {
     id: 1,
+    title: "Spark",
+    description: "An AI-powered full-stack UI builder that turns natural language prompts into production-ready interfaces with live preview, iterative chat refinement, and secure auth-backed persistence.",
+    tech_stack: ["React", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
+    url: "https://spark-nine-beta.vercel.app/",
+    github_url: "https://github.com/subxm/Spark",
+    image_url: "https://image.thum.io/get/width/1200/https://spark-nine-beta.vercel.app/"
+  },
+  {
+    id: 2,
     title: "CodeCollab",
     description: "A real-time collaborative IDE with AI pair programming, live code execution, and instant team sync. Multiple developers can write code simultaneously with live cursor sync powered by Socket.io.",
     tech_stack: ["React", "Node.js", "Socket.io", "AI"],
     url: "https://codecollab-five.vercel.app/",
     github_url: "https://github.com/subxm/code_collab",
     image_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000"
-  },
-  {
-    id: 2,
-    title: "RESOLIO",
-    description: "AI-powered application for intelligent problem resolution and analysis. Built with modern technologies to provide seamless user experience.",
-    tech_stack: ["Next.js", "TypeScript", "AI", "Tailwind"],
-    url: "https://resolio-ai.netlify.app/",
-    github_url: "https://github.com/subxm/RESOLIO",
-    image_url: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000"
   }
 ];
 
