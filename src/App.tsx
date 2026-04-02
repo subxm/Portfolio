@@ -315,16 +315,6 @@ function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden perspective-[1000px] px-6">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20" />
-      <motion.div
-        className="absolute -left-20 top-24 w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl"
-        animate={{ x: [0, 30, 0], y: [0, -20, 0], rotate: [0, 8, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -right-24 bottom-20 w-72 h-72 rounded-full bg-white/8 blur-3xl"
-        animate={{ x: [0, -28, 0], y: [0, 24, 0], rotate: [0, -8, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-      />
       
       <motion.div 
         style={{ y, opacity, scale, rotateX }}
@@ -336,7 +326,6 @@ function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full max-w-sm mx-auto lg:mx-0"
         >
-          <div className="absolute -inset-4 bg-gradient-to-br from-white/20 to-transparent blur-2xl opacity-60" />
           <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
             <img
               src="/profile.png"
@@ -512,11 +501,11 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 relative overflow-hidden scroll-mt-28" ref={ref}>
+    <section id="contact" className="min-h-screen px-6 py-12 md:py-16 relative overflow-hidden scroll-mt-28 flex flex-col justify-center" ref={ref}>
       <div className="absolute inset-0 bg-zinc-950 z-0" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05)_0,transparent_50%)] z-0" />
       
-      <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20">
+      <div className="max-w-7xl mx-auto relative z-10 w-full flex-1 flex items-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
         <motion.div
           initial={{ opacity: 0, x: -60, filter: "blur(12px)" }}
           animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
@@ -607,10 +596,11 @@ function Contact() {
             )}
           </form>
         </motion.div>
+        </div>
       </div>
       
       {/* Footer */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-zinc-500 text-sm">
+      <div className="max-w-7xl mx-auto w-full mt-10 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-zinc-500 text-sm">
         <p>© {new Date().getFullYear()} Subham. All rights reserved.</p>
         <p className="mt-4 md:mt-0">Designed & Built with precision.</p>
       </div>
