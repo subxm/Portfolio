@@ -171,7 +171,7 @@ const PROJECTS = [
     tech_stack: ["React", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
     url: "https://spark-nine-beta.vercel.app/",
     github_url: "https://github.com/subxm/Spark",
-    image_url: "https://image.thum.io/get/width/1200/https://spark-nine-beta.vercel.app/"
+    image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fspark-nine-beta.vercel.app%2F?w=1200"
   },
   {
     id: 2,
@@ -180,7 +180,16 @@ const PROJECTS = [
     tech_stack: ["React", "Node.js", "Socket.io", "AI"],
     url: "https://codecollab-five.vercel.app/",
     github_url: "https://github.com/subxm/code_collab",
-    image_url: "https://image.thum.io/get/width/1200/https://codecollab-five.vercel.app/"
+    image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcodecollab-five.vercel.app%2F?w=1200"
+  },
+  {
+    id: 3,
+    title: "Financial Backend API",
+    description: "A role-based finance dashboard REST API with JWT authentication, secure record management, and analytics endpoints for summaries, category breakdowns, and trend reporting with interactive Swagger documentation.",
+    tech_stack: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Swagger"],
+    url: "https://finance-backend-h5jb.onrender.com/api/docs/",
+    github_url: "https://github.com/subxm/Financial-Backend-api",
+    image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffinance-backend-h5jb.onrender.com%2Fapi%2Fdocs%2F?w=1200"
   }
 ];
 
