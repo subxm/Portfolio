@@ -189,7 +189,7 @@ const PROJECTS = [
     tech_stack: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Swagger"],
     url: "https://finance-backend-h5jb.onrender.com/api/docs/",
     github_url: "https://github.com/subxm/Financial-Backend-api",
-    image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffinance-backend-h5jb.onrender.com%2Fapi%2Fdocs%2F?w=1200"
+    image_url: "/images/finance-api.png"
   }
 ];
 
@@ -318,40 +318,25 @@ function Hero() {
       
       <motion.div 
         style={{ y, opacity, scale, rotateX }}
-        className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(260px,420px)_1fr] gap-10 lg:gap-20 items-center transform-gpu"
+        className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center justify-center transform-gpu"
       >
-        <motion.div
-          initial={{ opacity: 0, x: -40, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-sm mx-auto lg:mx-0"
-        >
-          <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-            <img
-              src="/profile.png"
-              alt="Subham Singh Negi profile"
-              className="w-full h-[420px] sm:h-[460px] object-cover object-top"
-            />
-          </div>
-        </motion.div>
-
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center lg:text-left"
+          className="text-center flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
             <span className="text-sm font-medium tracking-wide text-zinc-300">Available for new opportunities</span>
           </div>
           
-          <h1 className="font-black leading-tight tracking-tighter mb-6">
+          <h1 className="font-black leading-tight tracking-tighter mb-6 text-center">
             <span className="block text-3xl md:text-4xl lg:text-5xl mb-2">Hi, I'm</span>
             <span className="block text-[clamp(2.2rem,5.6vw,5.25rem)] whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 to-white">Subham Singh Negi.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto lg:mx-0 font-light">
+          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto font-light text-center">
             I build immersive digital experiences, combining robust backend architecture with cutting-edge frontend design.
           </p>
         </motion.div>
