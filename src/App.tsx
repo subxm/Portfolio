@@ -184,6 +184,15 @@ const PROJECTS = [
   },
   {
     id: 3,
+    title: "Dot",
+    description: "A premium, distraction-free 1:1 anonymous habit accountability partner network. Match with a partner in tribes like Coding, Fitness, or Writing, and share progress logs blurred under strict reciprocity.",
+    tech_stack: ["React", "Firebase", "Framer Motion", "Vite", "TypeScript"],
+    url: "https://dot-tribe.web.app/",
+    github_url: "https://github.com/subxm/dot",
+    image_url: "/images/dot.png"
+  },
+  {
+    id: 4,
     title: "Financial Backend API",
     description: "A role-based finance dashboard REST API with JWT authentication, secure record management, and analytics endpoints for summaries, category breakdowns, and trend reporting with interactive Swagger documentation.",
     tech_stack: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Swagger"],
