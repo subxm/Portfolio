@@ -171,7 +171,7 @@ const PROJECTS = [
     tech_stack: ["React", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
     url: "https://spark-nine-beta.vercel.app/",
     github_url: "https://github.com/subxm/Spark",
-    image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fspark-nine-beta.vercel.app%2F?w=1200"
+    image_url: "/images/spark.png"
   },
   {
     id: 2,
