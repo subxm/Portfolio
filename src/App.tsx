@@ -193,12 +193,12 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "Financial Backend API",
-    description: "A role-based finance dashboard REST API with JWT authentication, secure record management, and analytics endpoints for summaries, category breakdowns, and trend reporting with interactive Swagger documentation.",
-    tech_stack: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Swagger"],
-    url: "https://finance-backend-h5jb.onrender.com/api/docs/",
-    github_url: "https://github.com/subxm/Financial-Backend-api",
-    image_url: "/images/finance-api.png"
+    title: "Briefd",
+    description: "A clean, distraction-free briefing app that delivers concise, AI-curated daily news summaries — cutting through the noise so you stay informed without the overwhelm.",
+    tech_stack: ["React", "Node.js", "Vite", "TypeScript"],
+    url: "https://briefdd.vercel.app/",
+    github_url: "https://github.com/subxm/Briefd",
+    image_url: "/images/briefd.png"
   }
 ];
 
