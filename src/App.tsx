@@ -195,7 +195,7 @@ const PROJECTS = [
     id: 4,
     title: "Briefd",
     description: "A premium competitive intelligence platform that orchestrates a sequential pipeline of four autonomous AI agents to conduct deep, multi-dimensional analyses of target companies in real-time.",
-    tech_stack: ["React", "JavaScript", "FastAPI", "ML", "RAG"],
+    tech_stack: ["React", "FastAPI", "ML", "RAG", "Supabase", "PostgreSQL"],
     url: "https://briefdd.vercel.app/",
     github_url: "https://github.com/subxm/Briefd",
     image_url: "/images/briefd.png"
