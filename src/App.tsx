@@ -166,21 +166,21 @@ const SKILLS = [
 const PROJECTS = [
   {
     id: 1,
-    title: "Spark",
-    description: "An AI-powered full-stack UI builder that turns natural language prompts into production-ready interfaces with live preview, iterative chat refinement, and secure auth-backed persistence.",
-    tech_stack: ["React", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
-    url: "https://spark-nine-beta.vercel.app/",
-    github_url: "https://github.com/subxm/Spark",
-    image_url: "/images/spark.png"
-  },
-  {
-    id: 2,
     title: "CodeCollab",
     description: "A real-time collaborative IDE with AI pair programming, live code execution, and instant team sync. Multiple developers can write code simultaneously with live cursor sync powered by Socket.io.",
     tech_stack: ["React", "Node.js", "Socket.io", "AI"],
     url: "https://codecollab-five.vercel.app/",
     github_url: "https://github.com/subxm/code_collab",
     image_url: "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcodecollab-five.vercel.app%2F?w=1200"
+  },
+  {
+    id: 2,
+    title: "Briefd",
+    description: "A premium competitive intelligence platform that orchestrates a sequential pipeline of four autonomous AI agents to conduct deep, multi-dimensional analyses of target companies in real-time.",
+    tech_stack: ["React", "FastAPI", "ML", "RAG", "Supabase", "PostgreSQL"],
+    url: "https://briefdd.vercel.app/",
+    github_url: "https://github.com/subxm/Briefd",
+    image_url: "/images/briefd.png"
   },
   {
     id: 3,
@@ -193,12 +193,12 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "Briefd",
-    description: "A premium competitive intelligence platform that orchestrates a sequential pipeline of four autonomous AI agents to conduct deep, multi-dimensional analyses of target companies in real-time.",
-    tech_stack: ["React", "FastAPI", "ML", "RAG", "Supabase", "PostgreSQL"],
-    url: "https://briefdd.vercel.app/",
-    github_url: "https://github.com/subxm/Briefd",
-    image_url: "/images/briefd.png"
+    title: "Spark",
+    description: "An AI-powered full-stack UI builder that turns natural language prompts into production-ready interfaces with live preview, iterative chat refinement, and secure auth-backed persistence.",
+    tech_stack: ["React", "Node.js", "Express", "PostgreSQL", "Gemini AI"],
+    url: "https://spark-nine-beta.vercel.app/",
+    github_url: "https://github.com/subxm/Spark",
+    image_url: "/images/spark.png"
   }
 ];
 
